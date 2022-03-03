@@ -48,5 +48,50 @@ API로 데이터를 수집하기 위해서는 urllib 패키지를 이용하여 u
 일별 환율 데이터를 수집하기 위해서 아래와 같이 url을 구성. 주별,월별 단위의 데이터도 수집이 가능하다.
 
 API를 이용해서 데이터를 수집하는 방법은 1.2 OPEN API를 이용하여 데이터 수집하기 참조.
+관련 코드는 code 폴더의 url.ipynb를 참고.
 
+from_symbol에 USD를 to_symbol에 KRW를 입력하면 원달러 환율 데이터를 얻을 수 있다. 요청한 데이터는 json 형식으로 회신되어, json 패키지를 이용해서 딕셔너리 자료형으로 바꿔 준다. json은 데이터를 전달하기 위한 포맷의 하나로, 키와 값으로 이루어진다.
+
+파이썬에서는 데이터 분석을 위해 판다스 패키지의 데이터 프레임을 많이 사용한다. 데이터 프레임은 행과 열로 이루어진 테이블 형태의 자료형으로 데이터 분석에 사용하기 위해 딕셔너리를 판다스 데이터 프레임으로 바뀌었다.
+
+# 원자재 가격 데이터
+**원자재 가격**은 미국 연방준비은행에서 관리하는 FRED(Federal Reserve Economic Data)에서 수집할 수 있다. 찾고 싶은 정보를 사이트(https://fred.stlouisfed.org/)에서 검색합니다. 원유 가격을 확인하기 위해 oil이라고 검색한다면 Crude Oil Prices:West Texas Intermediate(WTI)를 찾을 수 있고 DCOILWTICO처럼 코드도 알 수 있다.
+관련 코드는 code 폴더의 fred.ipynb를 참고.
+
+# 그 외 경제 지표 데이터
+GDP나 인구수 같은 경제 지표도 pandas_datareader를 통해서 수집할 수 있다. 경제 지표를 수집할 수 있는 곳은 Econdb,Fred, World Bank, OECD, Enigma가 있다. 
+**Econdb**는 90개 이상의 공식적인 통계기관으로 경제 데이터를 제공한다
+**Fred**는 세인트루이스 연방준비은행에서 제공하는 미국 및 각국의 주요 경제 지표를 수집할 수 있다.
+**World Bank**는 세계 은행에서 제공하는 경제 지표 데이터이다.
+**OECD**는 OECD 국가 통계 자료이다.
+**Enigma**는 Enigma 사이트에서 제공하는 공개 데이터 수집이 가능하다.
+
+**World Bank**를 통해 각국의 GDP 정보를 수집하려면 데이터를 수집하는 국가 코드를 알아야 한다. 구글에서 korea iso code를 검색하면 한국의 국가 코드가 KOR임을 알 수 있다.
+
+World Bank에서 제공하는 데이터는 search 함수를 이용해서 데이터 코드를 검색할 수 있다. 제일 앞에서 수집하려는 경제 지표를 입력하고, 마침표로 검색하려는 상세 내용을 입력해야 한다 
+
+관련 코드는 code 폴더의 GDP.ipynb를 참고.
+
+한국과 일본의 구매력 기준 1인당 국민 소득을 그래프로 그렸다.
+관련 코드는 code 폴더의 KOGDP.ipynb를 참고.
+
+## 1.1.2 finance-datareader 이용하기
+pandas-datareader의 장점은 편리하게 금융 데이터를 수집할 수 있다는 것이다. 하지만 국내 주식 데이터를 수집하기에는 다소 어려움이 있다.
+국내 주식 데이터는 **FinanceDataReader**라는 패키지를 통해 수집할 수 있다.
+
+**FinanceDataReader**는 'pip install finance-datareader'를 입력하면 설치할 수 있다.
+
+# 전체 종목 코드 수집하기
+**StockListing**이라는 함수를 이용하면 전체 종목 코드를 수집할 수 있다. 한국과 미국의 종목 코드를 모두 수집할 수 있다. 한국은 KRX(KRX 종목 전체), KOSPI, KOSDA, KONEX를 입력하고, 미국은 NASDAQ, NYSE(뉴욕 증권거래소 종목), AMEX(AMEX 종목), SP500을 입력하면 된다.
+관련 코드는 code 폴더의 KOSPI.ipynb를 참고.
+
+# 국내 주가 데이터 수집하기
+수집한 데이터에서 삼성전자 종목 코드를 확인하는 코드.
+관련 코드는 code 폴더의 samsung.ipynb를 참고.
+
+삼성전자 주가를 수집하여 종가 추이를 확인하는 코드.
+관련 코드는 code 폴더의 samsungplus.ipynb를 참고.
+
+finance datareader에서도 각종 지수와 환율 데이터, 암호화 화폐 가격 데이터를 수집할 수 있다. 
+finance datareader 사이트 참고.
 ```<참고자료> 금융 데이터를 위한 파이썬(작가 테리엇)```
